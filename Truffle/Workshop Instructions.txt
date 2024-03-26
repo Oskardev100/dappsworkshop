@@ -1,0 +1,32 @@
+Truffle Vanilla Project
+1. Environment Setup
+ - install truffl
+	npm install -g truffle
+ - initialize truffle
+	truffle init
+ - Initialize empty project using npm init -y 
+
+2. SmartContract & Truffle Setup
+ - Add contract into contracts folder
+ - Compile contracts using
+	truffle compile
+ - Add deployment instructions script, inside migrations folder
+	1) reference to the smart contract file
+	2) export file
+ - Verify network configuration file and make changes if needed
+ - Initialize Truffle using this command:
+	truffle develop
+ - Once truffle consule is ready, deploy the smart contract using command:
+	migrate
+ - You should see the TX Hash, block#, gas and account where contract was deployed.
+
+3. Use your smart contract
+Bring the contract definition into remix
+ - Copy the contract address 
+ - Under Deployment & Run Transactions tab in Remix, select Dev Ganache Provider
+ - Enter your local endpoint
+ - Validate list of accounts match with your local ganache
+ - Past the contract address into "At Address"
+ - Your contract should now be loaded into Remix
+
+
