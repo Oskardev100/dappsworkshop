@@ -35,9 +35,7 @@ function ContractBtns({ setValue }) {
   }
 
   const addFounds = async() => {
-    //const collectAmount = web3.utils.toWei('10', 'finney'); // Convert 0.1 ETH to Wei
-
-    const foundResult = await contract.methods.Collect().send({
+    const foundResult = await contract.methods.Found().send({
       from: accounts[0],
       value: 100000000,
     })
@@ -48,6 +46,20 @@ function ContractBtns({ setValue }) {
       console.error('Error collecting funds:', error);
     });
     console.log(foundResult);
+  }
+
+  const sendPayment = async() => {
+    const sendPayment = await contract.methods.PayVendor().send( {
+      from: accounts[0],
+      //value: 100000000,
+    }).
+    then((tx) => {
+      console.log('Payment transaction hash:', tx.transactionHash);
+    })
+    .catch((error) => {
+      console.error('Error while sending payment:', error);
+    });
+
   }
 
   return (
@@ -71,6 +83,9 @@ function ContractBtns({ setValue }) {
       </div>
       <div>
         <button onClick={addFounds}>Add Founds</button>
+      </div>
+      <div>
+        <button onClick={sendPayment}>Send Payment</button>
       </div>
 
     </div>

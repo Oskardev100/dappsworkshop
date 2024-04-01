@@ -12,7 +12,7 @@ contract SimpleStorage {
     value = newValue;
   }
 
-  // State variable to store the total amount collected
+    // State variable to store the total amount collected
   uint public balance;
 
   // Address of the contract creator (owner)
@@ -24,7 +24,7 @@ contract SimpleStorage {
   }
 
   // Function to collect funds to the contract
-  function Collect() public payable {
+  function Found() public payable {
     balance += msg.value;
   }
 
@@ -34,7 +34,7 @@ contract SimpleStorage {
     _;
   }
 
-  function Pay() public onlyOwner {
+  function PayVendor() public onlyOwner {
     // Transfer the entire balance to the owner
     owner.transfer(balance);
     balance = 0;
