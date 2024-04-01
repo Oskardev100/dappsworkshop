@@ -28,6 +28,28 @@ function ContractBtns({ setValue }) {
     await contract.methods.write(newValue).send({ from: accounts[0] });
   };
 
+  const getBalance = async () => {
+    const balance = await  contract.methods.balance().call( { from: accounts[0]});
+    console.log('contract balance is:' + balance);
+
+  }
+
+  const addFounds = async() => {
+    //const collectAmount = web3.utils.toWei('10', 'finney'); // Convert 0.1 ETH to Wei
+
+    const foundResult = await contract.methods.Collect().send({
+      from: accounts[0],
+      value: 100000000,
+    })
+    .then((tx) => {
+      console.log('Collect transaction hash:', tx.transactionHash);
+    })
+    .catch((error) => {
+      console.error('Error collecting funds:', error);
+    });
+    console.log(foundResult);
+  }
+
   return (
     <div className="btns">
 
@@ -42,6 +64,13 @@ function ContractBtns({ setValue }) {
           value={inputValue}
           onChange={handleInputChange}
         />)
+      </div>
+
+      <div>
+        <button onClick={getBalance}>Get Balance</button>
+      </div>
+      <div>
+        <button onClick={addFounds}>Add Founds</button>
       </div>
 
     </div>
