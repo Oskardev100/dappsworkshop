@@ -1,0 +1,36 @@
+This workshop will allow you to craete a basic front end in react that has web3 enabled,
+It works as the base to have a front end in react that can interact with your smart contract via events.
+
+Reference: https://archive.trufflesuite.com/boxes/react/
+
+step by step guide:
+1. Open a console and create a new empty folder
+2. Initialize node package manager
+    npm i -y
+3. Initialize truffle react box following below commands
+    3.1 Install truffle
+            npm i truffle
+    3.2 Unbox truffle react
+            npx truffle unbox react
+    3.3 Run the application front end
+            npm start
+
+4. Setup backend of the application
+    4.1 Install truffle ganache
+         npm install -g truffle ganache
+    4.2 Terminal 1. Initialize Ganache Server
+        ganache
+    4.3 Go to truffle folder in your console
+    4.4 Validate your network configuration
+    4.5 Deploy your contract using custon development network
+        truffle migrate --network development
+    
+5. Load your web app
+    5.1 Open a new terminal and go to the client folder
+    5.2 launche web 
+        npm start
+    
+6. Setup metasks to load the Ganache accounts 
+    6.1 Play with the front end of your smart contract
+    6.2 Setup accounts in metasks
+    6.3 Test again both methods on the Web UI

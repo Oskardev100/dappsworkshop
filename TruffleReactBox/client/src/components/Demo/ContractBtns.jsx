@@ -28,6 +28,40 @@ function ContractBtns({ setValue }) {
     await contract.methods.write(newValue).send({ from: accounts[0] });
   };
 
+  const getBalance = async () => {
+    const balance = await  contract.methods.balance().call( { from: accounts[0]});
+    console.log('contract balance is:' + balance);
+
+  }
+
+  const addFounds = async() => {
+    const foundResult = await contract.methods.Found().send({
+      from: accounts[0],
+      value: 100000000,
+    })
+    .then((tx) => {
+      console.log('Collect transaction hash:', tx.transactionHash);
+    })
+    .catch((error) => {
+      console.error('Error collecting funds:', error);
+    });
+    console.log(foundResult);
+  }
+
+  const sendPayment = async() => {
+    const sendPayment = await contract.methods.PayVendor().send( {
+      from: accounts[0],
+      //value: 100000000,
+    }).
+    then((tx) => {
+      console.log('Payment transaction hash:', tx.transactionHash);
+    })
+    .catch((error) => {
+      console.error('Error while sending payment:', error);
+    });
+
+  }
+
   return (
     <div className="btns">
 
@@ -42,6 +76,16 @@ function ContractBtns({ setValue }) {
           value={inputValue}
           onChange={handleInputChange}
         />)
+      </div>
+
+      <div>
+        <button onClick={getBalance}>Get Balance</button>
+      </div>
+      <div>
+        <button onClick={addFounds}>Add Founds</button>
+      </div>
+      <div>
+        <button onClick={sendPayment}>Send Payment</button>
       </div>
 
     </div>
