@@ -4,6 +4,8 @@ import useEth from "../../contexts/EthContext/useEth";
 function ContractBtns({ setValue }) {
   const { state: { contract, accounts } } = useEth();
   const [inputValue, setInputValue] = useState("");
+  const [title, setTitle] = useState('');
+   const [description, setDescription] = useState('');
 
   const handleInputChange = e => {
     if (/^\d+$|^$/.test(e.target.value)) {
@@ -59,7 +61,22 @@ function ContractBtns({ setValue }) {
     .catch((error) => {
       console.error('Error while sending payment:', error);
     });
+  }
 
+  const addCampaing = async() => {
+
+    const title = "title a";
+    const description = "desc a";
+    try {
+      const addNewCampaign = await contract.methods.addCampaign(title, description).send({
+        from: accounts[0]
+    });
+      
+    } catch (error) {
+      console.log(error);
+    }
+
+    
   }
 
   return (
@@ -86,6 +103,27 @@ function ContractBtns({ setValue }) {
       </div>
       <div>
         <button onClick={sendPayment}>Send Payment</button>
+      </div>
+      
+      <div>
+
+      <label>
+        Title:
+        <input type="text" onChange={(e) => setTitle(e.target.value)}  /> 
+        </label>
+      <label>
+        Description:
+        <input type="text"  value={description}  onChange={(e) => setDescription(e.target.value)}/>
+      </label>
+      <br />
+      
+        
+
+
+
+
+
+        <button onClick={addCampaing}>Add Campaign</button>
       </div>
 
     </div>
